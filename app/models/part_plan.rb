@@ -1,0 +1,2 @@
+class PartPlan < ApplicationRecord
+end
