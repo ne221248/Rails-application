@@ -5,7 +5,6 @@ class CreateMembers < ActiveRecord::Migration[7.0]
       t.string :mail, null: false #メールアドレス
       t.string :address, null: false #住所
       t.string :telephone, null: false #電話番号
-      t.string :order #オーダー
       t.timestamps
     end
   end

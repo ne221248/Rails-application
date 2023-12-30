@@ -1,2 +1,28 @@
 <% @page_title = "プラン一覧" %>
 <h1><%= @page_title %></h1>
+
+<% if @plans.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>プラン名</th>
+        <th>おすすめのユーザ</th>
+        <th>説明</th>
+        <th>合計金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @plans.each do |plan| %>
+        <tr>
+          <td style="text-align: right"><%= link_to plan.name , plan %></td>
+          <td><%= plan.usertype %></td>
+          <td><%= plan.description %></td>
+          <td><%= plan.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <!-- ページネーション入れてもいいかも -->
+<% else %>
+  <p>プラン情報がありません。</p>
+<% end %>
