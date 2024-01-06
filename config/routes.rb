@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "plans#index"
   resources :plans do
     get "search", on: :collection
+    resource :cart, only: [:edit]
   end
 
   resource :cart
