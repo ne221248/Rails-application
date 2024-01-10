@@ -1,4 +1,4 @@
-names = ["朝田創太", "菅野 創太", "関根 賢太郎", "立入 雅史"]
+names = ["朝田創太", "菅野創太", "関根賢太郎", "立入雅史"]
 
 0.upto(3) do |idx|
     member = Member.find_by(name: names[idx])

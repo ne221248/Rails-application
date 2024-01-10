@@ -1,0 +1,10 @@
+<% @page_title = "ユーザの新規登録" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "プラン一覧に戻る", :root %></div>
+
+<%= form_for @member, as: "account", url: :account do |form| %>
+  <%= render "form", form: form %>
+  <div><%= form.submit "登録する" %></div>
+<% end %>

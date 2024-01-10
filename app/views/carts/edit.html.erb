@@ -1,11 +1,9 @@
-<% @page_title = "プランの詳細" %>
-<h1><%= @page_title %></h1>
+<% @page_title = "パーツ変更" %>
+<h1><%= "#{@plan.name}の#{@page_title}" %></h1>
 
-<div class="toolbar">
-    <p><%= link_to "#{@plan.name}プランのパーツ構成を変更する", edit_plan_cart_path(@plan) %></p>
-    <p><%= link_to "#{@plan.name}プランをカートに追加する", new_plan_cart_path(@plan) %></p>
-</div>
+<div class="toolbar"><%= link_to "プランの詳細に戻る", plan_path(@plan) %></div>
 
+<%= @plan.name %>
 <% if @parts.present? %>
   <table class="attr">
     <thead>
@@ -34,3 +32,6 @@
 <% end %>
 
 
+<%= @configurations %>
+ああああ
+<%= @cart %>

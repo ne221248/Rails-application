@@ -1,4 +1,4 @@
 class Cart < ApplicationRecord
     belongs_to :member
-    has_many :collections
+    has_many :configurations
 end

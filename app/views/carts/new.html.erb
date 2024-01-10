@@ -1,12 +1,19 @@
-<% @page_title = "プランの詳細" %>
-<h1><%= @page_title %></h1>
+<% @page_title = "カートに追加" %>
+<h2><%= "#{@plan.name}を#{@page_title}しますか？" %>
+<%= form_for [@cart, @configurations], as: "cart", url: :cart do |form| %>
+    <div><%= form.submit "追加する" %></div>
+<% end %>
+</h2>
 
-<div class="toolbar">
-    <p><%= link_to "#{@plan.name}プランのパーツ構成を変更する", edit_plan_cart_path(@plan) %></p>
-    <p><%= link_to "#{@plan.name}プランをカートに追加する", new_plan_cart_path(@plan) %></p>
-</div>
+<% @configurations.each do |configuration| %>
+<%= configuration.part_id %>
+<%= configuration.cart_id %>
+<%= configuration.plan_id %>
+<% end %>
 
 <% if @parts.present? %>
+  <br>
+  <h3>プランの詳細</h3>
   <table class="attr">
     <thead>
       <tr>
@@ -32,5 +39,3 @@
 <% else %>
   <p>パーツの情報がありません。<%= @plan.name %></p>
 <% end %>
-
-

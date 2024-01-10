@@ -1,0 +1,10 @@
+<% @page_title = "カート" %>
+<h1><%= @page_title %></h1>
+
+<% if @configuration.present? %>
+<%= @cart.member_id %>
+
+<% else %>
+  <h3>カートは空です。</h3>
+  <p><%= link_to "Top", Plan %></p>
+<% end %>

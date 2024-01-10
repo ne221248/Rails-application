@@ -1,0 +1,8 @@
+<%= render "shared/login_form" unless current_member%>
+
+<h2>メニュー</h2>
+<ul>
+  <li><%= link_to "プラン一覧", :root %></li>
+  <li><%= link_to "カート", cart_path %></li>
+  <li><%= link_to "注文状況", "#" %></li>
+</ul>

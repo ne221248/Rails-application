@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_22_064836) do
     t.string "mail", null: false
     t.string "address", null: false
     t.string "telephone", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

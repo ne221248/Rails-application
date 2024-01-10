@@ -1,18 +1,78 @@
 class CartsController < ApplicationController
-
-    def index 
-    end
+    before_action :login_required
 
     def show
+        member = current_member
+        @cart = Cart.find_by(member_id: member.id)
+        @configurations = @cart.configuration
+        #@plan = Plan.find_by(id: @configurations.plan_id)
+        my_objects = []
+        array = []
+        @configurations.each_with_index do |configuration, idx|
+            array[idx] = configuration.part_id
+        end
+        array.each do |id|
+            my_objects << Part.find_by(id: id)
+        end
+        @parts = my_objects   
     end
 
     def edit # パーツ変更をする際に呼び出されるアクション
+        # パラメータが存在するかどうかで条件分岐
+        if params[:plan_id].present?
 
-        # Configuration.find_by(cart_id: parans[:id])が存在するかどうかで条件分岐
+            # 前処理
+            member = current_member
+            @cart = Cart.find_by(member_id: member.id)
+            @plan = Plan.find_by(id: params[:plan_id])
+            part_plans = PartPlan.where(plan_id: @plan.id)
+            my_objects = []
+            array = []
+            part_plans.each_with_index do |part_plan, idx|
+                array[idx] = part_plan.part_id
+            end
+            array.each do |id|
+                my_objects << Part.find_by(id: id)
+            end
+            @parts = my_objects
+
+            # configurationの作成
+            my_objects2 = []
+            @parts.each_with_index do |part, idx|
+                my_objects2[idx] = @cart.configurations.build(
+                plan_id: @plan.id,
+                part_id: part.id,
+                )
+            end
+            @configurations = my_objects2
+        else
+
+            member = current_member
+            @cart = Cart.find_by(id: params[:id])
+            @configurations = @cart.configuration
+            @plan = Plan.find_by(id: @configurations.plan_id)
+            my_objects = []
+            array = []
+            @configurations.each_with_index do |configuration, idx|
+                array[idx] = configuration.part_id
+            end
+            array.each do |id|
+                my_objects << Part.find_by(id: id)
+            end
+            @parts = my_objects
+        end
+    end
+
+    def update
+
+    end
+
+    def new
         # 前処理
-        @cart = Cart.find_by(member_id: #current_member)
-        plan = Plan.find_by(id: params[:plan_id])
-        part_plans = PartPlan.where(plan_id: plan.id)
+        member = current_member
+        @cart = Cart.find_by(member_id: member.id)
+        @plan = Plan.find_by(id: params[:plan_id])
+        part_plans = PartPlan.where(plan_id: @plan.id)
         my_objects = []
         array = []
         part_plans.each_with_index do |part_plan, idx|
@@ -24,18 +84,28 @@ class CartsController < ApplicationController
         @parts = my_objects
 
         # configurationの作成
-        @parts.each do |part|
-            @configuration = configuration.create(
-                plan_id: plan.id,
+        my_objects2 = []
+        @parts.each_with_index do |part, idx|
+            my_objects2[idx] = @cart.configurations.build(
+                plan_id: @plan.id,
                 part_id: part.id,
-                cart_id: @cart.id,
-                order_id:
             )
         end
+        @configurations = my_objects2
     end
 
-    def update
+    def create
+        member = current_member
+        @cart = Cart.find_by(member_id: member.id)
+        configurations_params = params[:cart] # form_forで送信された複数のオブジェクトを格納
+        configurations_params.each do |config_params|
+            @configurations << @cart.configurations.build(config_params)
+        end
 
+        if @configurations.all?(&:save)
+            redirect_to cart_path, notice: "カートに追加しました" #flashにメッセージを入れて、/cartにリダイレクト
+        else
+            render "show"
+        end
     end
-
 end

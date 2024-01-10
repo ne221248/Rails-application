@@ -1,2 +1,30 @@
-<h1>Accounts#show</h1>
-<p>Find me in app/views/accounts/show.html.erb</p>
+<% @page_title = "マイアカウント" %>
+<h1><%= @page_title %></h1>
+
+<ul class="toolbar">
+  <%= menu_link_to "アカウント情報の編集", :edit_account %>
+  <%= menu_link_to "パスワードの変更", :edit_password %>
+</ul>
+
+<table class="attr">
+  <tr>
+    <th width="150">ユーザー名</th>
+    <td><%= @member.name %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @member.mail %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @member.address %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= @member.telephone %></td>
+  </tr>
+</table>
+
+<div class="toolbar">
+    <p><%= link_to "Top", Plan %></p>
+</div>
