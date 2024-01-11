@@ -20,6 +20,8 @@ class PlansController < ApplicationController
     end
 
     def search
+        @plans = Plan.serch(params[:q], params[:u])
+        render "index"
     end
 
     #以下、管理者のみ権限を所有する

@@ -1,6 +1,12 @@
 <% @page_title = "プラン一覧" %>
 <h1><%= @page_title %></h1>
 
+<%= form_tag :search_plans, method: :get, class: "serch" do %>
+  <%= select_tag "q", options_for_select(["指定なし", "10万~20万", "20万~30万", "30万~"], selected: "指定なし") %>
+  <%= select_tag "u", options_for_select(["指定なし", "エントリー", "ミドル", "ハイエンド"], selected: "指定なし") %>
+  <%= submit_tag "検索" %>
+<% end %>
+
 <% if @plans.present? %>
   <table class="list">
     <thead>
