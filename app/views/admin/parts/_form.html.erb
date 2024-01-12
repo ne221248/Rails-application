@@ -1,0 +1,50 @@
+<%= render "shared/errors", obj: @part %>
+
+<table class="attr">
+  <tr>
+    <th><%= form.label :name, "パーツ名" %></th>
+    <td><%= form.text_field :name, size: 20 %></td>
+  </tr>
+    <th><%= form.label :price, "金額" %></th>
+    <td><%= form.text_field :price %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :inventory, "在庫" %></th>
+    <td><%= form.text_field :inventory %></td>
+  </tr>
+  <tr>
+    <th>グループ</th>
+    <td>
+      <%= form.radio_button :group, "intel" %>
+      <%= form.label :group_1, "intel" %>
+      <%= form.radio_button :group, "AMD" %>
+      <%= form.label :group_2, "AMD" %>
+    </td>
+  </tr>
+  <tr>
+    <th>パーツタイプ</th>
+    <td>
+      <%= form.radio_button :part_type_id, 1 %>
+      <%= form.label :kind_1, "CPU" %>
+      <%= form.radio_button :part_type_id, 2 %>
+      <%= form.label :kind_2, "OS" %>
+      <%= form.radio_button :part_type_id, 3 %>
+      <%= form.label :kind_3, "GPU" %>
+      <%= form.radio_button :part_type_id, 4 %>
+      <%= form.label :kind_4, "ケース" %>
+      <%= form.radio_button :part_type_id, 5 %>
+      <%= form.label :kind_5, "メモリ" %>
+      <br>
+      <%= form.radio_button :part_type_id, 6 %>
+      <%= form.label :kind_6, "ストレージ" %>
+      <%= form.radio_button :part_type_id, 7 %>
+      <%= form.label :kind_7, "マザーボード" %>
+      <%= form.radio_button :part_type_id, 8 %>
+      <%= form.label :kind_8, "冷却機" %>
+      <%= form.radio_button :part_type_id, 9 %>
+      <%= form.label :kind_9, "電源" %>
+      <%= form.radio_button :part_type_id, 10 %>
+      <%= form.label :kind_10, "光学ドライブ" %>
+    </td>
+  </tr>
+</table>

@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
     end
     helper_method :current_member
 
+    private def current_admin
+        Admin.find_by(id: cookies.signed[:admin_id]) if cookies.signed[:admin_id]
+    end
+    helper_method :current_admin
+
+    private def current_operator
+        Operator.find_by(id: cookies.signed[:operator_id]) if cookies.signed[:operator_id]
+    end
+    helper_method :current_operator
+
     class LoginRequired < StandardError; end
     class Forbidden < StandardError; end
 

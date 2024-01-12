@@ -1,0 +1,42 @@
+<%= render "shared/errors", obj: @plan %>
+
+<table class="attr">
+  <tr>
+    <th><%= form.label :name, "プラン名" %></th>
+    <td><%= form.text_field :name, size: 20 %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :description, "説明" %></th>
+    <td><%= form.text_field :description, size: 100 %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :price, "合計金額" %></th>
+    <td><%= form.text_field :price %></td>
+  </tr>
+  <tr>
+    <th>おすすめのユーザ</th>
+    <td>
+      <%= form.radio_button :usertype, "エントリー" %>
+      <%= form.label :usertype_1, "エントリー" %>
+      <%= form.radio_button :usertype, "ミドル" %>
+      <%= form.label :usertype_2, "ミドル" %>
+      <%= form.radio_button :usertype, "ハイエンド" %>
+      <%= form.label :usertype_3, "ハイエンド" %>
+    </td>
+  </tr>
+  <tr>
+    <th>在庫</th>
+    <td>
+      <%= form.radio_button :sale, true %>
+      <%= form.label :sale_1, "在庫あり" %>
+      <%= form.radio_button :sale, false %>
+      <%= form.label :sale_2, "在庫なし" %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>パーツ構成</th>
+    <td>
+    </td>
+  </tr>
+</table>

@@ -23,22 +23,4 @@ class PlansController < ApplicationController
         @plans = Plan.serch(params[:q], params[:u])
         render "index"
     end
-
-    #以下、管理者のみ権限を所有する
-
-    def edit #プランの変更
-    end
-
-    def update #プランの更新
-    end
-
-    def new #プランの新規作成
-    end
-
-    def create
-    end
-
-    def destroy
-    end
-
 end

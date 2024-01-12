@@ -1,14 +1,13 @@
 <% @page_title = "カートに追加" %>
-<h2><%= "#{@plan.name}を#{@page_title}しますか？" %>
-<%= form_for [@cart, @configurations], as: "cart", url: :cart do |form| %>
-    <div><%= form.submit "追加する" %></div>
-<% end %>
-</h2>
+<h2><%= "#{@plan.name}を#{@page_title}しますか？" %></h2>
+<%= link_to "追加する", cart_path, method: :post %>
 
 <% @configurations.each do |configuration| %>
+    <%= configuration.id %>
 <%= configuration.part_id %>
 <%= configuration.cart_id %>
 <%= configuration.plan_id %>
+<br>
 <% end %>
 
 <% if @parts.present? %>

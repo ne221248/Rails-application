@@ -1,0 +1,9 @@
+<% @page_title = "パーツの編集" %>
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "パーツの詳細に戻る", [:admin, @part] %></div>
+
+<%= form_for [:admin, @part] do |form| %>
+  <%= render "form", form: form %>
+  <div><%= form.submit "更新する" %></div>
+<% end %>

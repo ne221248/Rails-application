@@ -1,8 +1,12 @@
 <%= render "shared/login_form" unless current_member%>
 
 <h2>メニュー</h2>
-<ul>
-  <li><%= link_to "プラン一覧", :root %></li>
-  <li><%= link_to "カート", cart_path %></li>
-  <li><%= link_to "注文状況", "#" %></li>
-</ul>
+<%= 
+  if controller.kind_of?(Admin::Base)
+    render "shared/admin_menu"
+  elsif controller.kind_of?(Operator::Base)
+    render "shared/operator_menu"
+  else
+    render "shared/menu"
+  end
+%>

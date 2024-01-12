@@ -4,7 +4,7 @@ class CartsController < ApplicationController
     def show
         member = current_member
         @cart = Cart.find_by(member_id: member.id)
-        @configurations = @cart.configuration
+        @configurations = @cart.configurations
         #@plan = Plan.find_by(id: @configurations.plan_id)
         my_objects = []
         array = []
@@ -92,20 +92,35 @@ class CartsController < ApplicationController
             )
         end
         @configurations = my_objects2
+        session[:configurations] = @configurations
     end
 
     def create
+        p "テスト2"
+        p session
+        p "テスト23"
+        p session[:configurations]
         member = current_member
         @cart = Cart.find_by(member_id: member.id)
-        configurations_params = params[:cart] # form_forで送信された複数のオブジェクトを格納
-        configurations_params.each do |config_params|
-            @configurations << @cart.configurations.build(config_params)
+        configurations = session[:configurations] 
+        p configurations
+        configurations.each do |configuration|
+            p configuration["plan_id"]
+            # Configuration モデルのインスタンスを生成
+            config = @cart.configurations.build(
+                part_id: configuration["part_id"],
+                plan_id: configuration["plan_id"]
+            )
+            p "こんふぐ"
+            p config
+            # Configurationに追加
+            p config.save
         end
-
-        if @configurations.all?(&:save)
+      
             redirect_to cart_path, notice: "カートに追加しました" #flashにメッセージを入れて、/cartにリダイレクト
-        else
-            render "show"
-        end
+
+        
+
+        
     end
 end

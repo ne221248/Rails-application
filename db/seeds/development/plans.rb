@@ -1,15 +1,15 @@
-names = ["仮のプラン", "プランです"]
-descriptions = ["この説明は仮です。Ruby on Railsの勉強の集大成。計画的に行こう", "かきくけこ"]
+names = ["プランA", "プランB","プランC","プランD","プランE","プランF",]
+descriptions = ["Aの説明", "Bの説明","Cの説明","Dの説明","Eの説明","Fの説明"]
 usertypes = ["エントリー", "ミドル", "ハイエンド"]
-prices = [290000, 100000]
+prices = [100000, 200000,300000]
 sales = [false, true]
 
-0.upto(1) do |idx|
+0.upto(5) do |idx|
     Plan.create(
         name: names[idx],
         description: descriptions[idx],
-        usertype: usertypes[idx],
-        price: prices[idx],
+        usertype: usertypes[idx%3],
+        price: prices[idx%3],
         sale: true
     )
 end

@@ -1,11 +1,15 @@
-<% @page_title = "プラン一覧" %>
+<% @page_title = "プラン管理" %>
 <h1><%= @page_title %></h1>
 
-<%= form_tag :search_plans, method: :get, class: "search" do %>
+<%= form_tag :search_admin_plans, method: :get, class: "search" do %>
   <%= select_tag "q", options_for_select(["指定なし", "10万~20万", "20万~30万", "30万~"], selected: "指定なし") %>
   <%= select_tag "u", options_for_select(["指定なし", "エントリー", "ミドル", "ハイエンド"], selected: "指定なし") %>
   <%= submit_tag "検索" %>
 <% end %>
+
+<div class="toolbar">
+    <p><%= link_to "プランの新規登録", :new_admin_plan %></p>
+</div>
 
 <% if @plans.present? %>
   <table class="list">
@@ -20,15 +24,19 @@
     <tbody>
       <% @plans.each do |plan| %>
         <tr>
-          <td style="text-align: right"><%= link_to plan.name , plan %></td>
+          <td style="text-align: right"><%= link_to plan.name , [:admin, plan] %></td>
           <td><%= plan.usertype %></td>
           <td><%= plan.description %></td>
           <td><%= plan.price %></td>
+          <td>
+            <%= link_to "編集", [:edit, :admin, plan] %> |
+            <%= link_to "削除", [:admin, plan], method: :delete,
+            data: { confirm: "本当に削除しますか？" } %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <!-- ページネーション入れてもいいかも -->
 <% else %>
   <p>プラン情報がありません。</p>
 <% end %>

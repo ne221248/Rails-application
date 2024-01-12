@@ -1,0 +1,9 @@
+<% @page_title = "プランの編集" %>
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "プランの詳細に戻る", [:admin, @plan] %></div>
+
+<%= form_for [:admin, @plan] do |form| %>
+  <%= render "form", form: form %>
+  <div><%= form.submit "更新する" %></div>
+<% end %>
