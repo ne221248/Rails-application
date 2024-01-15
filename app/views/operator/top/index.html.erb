@@ -1,4 +1,25 @@
 <% @page_title = "オペレーター用ページ" %>
-<ul>
-  <li><%= link_to "予約ステータス管理", "#" %></li>
-</ul>
+
+<% if current_operator %>
+
+  <ul>
+    <li><%= link_to "予約ステータス管理", "#" %></li>
+  </ul>
+
+<% else %>
+  <h2>オペレーター用ログインページ</h2>
+  <% if flash.alert %><p class="alert"><%= flash.alert %></p><% end %>
+  <%= form_tag [:operator, :session], id: "login-form" do %>
+    <div>
+      <label>ユーザー名：</label>
+      <input type="text" name="name">
+    </div>
+    <div>
+      <label>パスワード：</label>
+      <input type="password" name="password">
+    </div>
+    <div>
+      <input type="submit" value="ログイン">
+    </div>
+  <% end %>
+<% end %>

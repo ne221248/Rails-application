@@ -40,17 +40,19 @@ class CartsController < ApplicationController
             my_objects2 = []
             @parts.each_with_index do |part, idx|
                 my_objects2[idx] = @cart.configurations.build(
-                plan_id: @plan.id,
-                part_id: part.id,
+                    plan_id: @plan.id,
+                    part_id: part.id,
                 )
             end
             @configurations = my_objects2
+            session[:configurations] = @configurations
+
         else
 
             member = current_member
-            @cart = Cart.find_by(id: params[:id])
-            @configurations = @cart.configuration
-            @plan = Plan.find_by(id: @configurations.plan_id)
+            @cart = Cart.find_by(member_id: member.id)
+            @configurations = @cart.configurations
+            session[:configurations] = @configurations
             my_objects = []
             array = []
             @configurations.each_with_index do |configuration, idx|
@@ -64,63 +66,74 @@ class CartsController < ApplicationController
     end
 
     def update
+        member = current_member
+        @cart = Cart.find_by(member_id: member.id)
+        configurations = session[:configurations] 
+        configurations.each do |configuration|
+            # Configuration モデルのインスタンスを生成
+            p "てすと"
+            p configuration.class
+            configuration.assign_attributes(
+                part_id: configuration["part_id"],
+                plan_id: configuration["plan_id"],
+                cart_id: configuration["cart_id"]
+            )
+            # Configurationに追加
+            configuration.save
+        end
+        @configurations = @cart.configurations
+        redirect_to cart_path, notice: "カートの内容を更新しました" #flashにメッセージを入れて、/cartにリダイレクト
 
     end
 
     def new
-        # 前処理
         member = current_member
         @cart = Cart.find_by(member_id: member.id)
-        @plan = Plan.find_by(id: params[:plan_id])
-        part_plans = PartPlan.where(plan_id: @plan.id)
-        my_objects = []
-        array = []
-        part_plans.each_with_index do |part_plan, idx|
-            array[idx] = part_plan.part_id
-        end
-        array.each do |id|
-            my_objects << Part.find_by(id: id)
-        end
-        @parts = my_objects
+        # すでにカートに存在している場合はカートに追加できないようにする
+        if !(@cart.configurations.present?) # 存在しない場合
+            # 前処理
+            @plan = Plan.find_by(id: params[:plan_id])
+            part_plans = PartPlan.where(plan_id: @plan.id)
+            my_objects = []
+            array = []
+            part_plans.each_with_index do |part_plan, idx|
+                array[idx] = part_plan.part_id
+            end
+            array.each do |id|
+                my_objects << Part.find_by(id: id)
+            end
+            @parts = my_objects
 
-        # configurationの作成
-        my_objects2 = []
-        @parts.each_with_index do |part, idx|
-            my_objects2[idx] = @cart.configurations.build(
-                plan_id: @plan.id,
-                part_id: part.id,
-            )
+            # configurationの作成
+            my_objects2 = []
+            @parts.each_with_index do |part, idx|
+                my_objects2[idx] = @cart.configurations.build(
+                    plan_id: @plan.id,
+                    part_id: part.id,
+                )
+            end
+            @configurations = my_objects2
+            session[:configurations] = @configurations
+        else
+            redirect_to cart_path, notice: "既に別のプランがカートに追加されています" #flashにメッセージを入れて、/cartにリダイレクト
         end
-        @configurations = my_objects2
-        session[:configurations] = @configurations
     end
 
     def create
-        p "テスト2"
-        p session
-        p "テスト23"
-        p session[:configurations]
         member = current_member
         @cart = Cart.find_by(member_id: member.id)
         configurations = session[:configurations] 
-        p configurations
         configurations.each do |configuration|
-            p configuration["plan_id"]
             # Configuration モデルのインスタンスを生成
             config = @cart.configurations.build(
                 part_id: configuration["part_id"],
                 plan_id: configuration["plan_id"]
             )
-            p "こんふぐ"
-            p config
             # Configurationに追加
-            p config.save
+            config.save
         end
-      
-            redirect_to cart_path, notice: "カートに追加しました" #flashにメッセージを入れて、/cartにリダイレクト
+        @configurations = @cart.configurations
+        redirect_to cart_path, notice: "カートに追加しました" #flashにメッセージを入れて、/cartにリダイレクト
 
-        
-
-        
     end
 end

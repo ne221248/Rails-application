@@ -1,7 +1,7 @@
 class PlansController < ApplicationController
 
     def index #プラン一覧表示
-        @plans = Plan.order(price: :asc).all #金額順に並び替え
+        @plans = Plan.order("id") 
     end
 
     def show #プラン詳細表示

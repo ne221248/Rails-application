@@ -1,6 +1,27 @@
 <% @page_title = "管理者ページ" %>
-<ul>
-  <li><%= link_to "会員管理", :admin_members %></li>
-  <li><%= link_to "プラン管理", :admin_plans %></li>
-  <li><%= link_to "パーツ管理", :admin_parts %></li>
-</ul>
+
+<% if current_admin %>
+  <ul>
+    <li><%= link_to "会員管理", :admin_members %></li>
+    <li><%= link_to "プラン管理", :admin_plans %></li>
+    <li><%= link_to "パーツ管理", :admin_parts %></li>
+    <li><%= link_to "予約管理", :admin_orders %></li>
+  </ul>
+<% else %>
+  <h2>管理者用ログインページ</h2>
+  <% if flash.alert %><p class="alert"><%= flash.alert %></p><% end %>
+  <%= form_tag [:admin, :session], id: "login-form" do %>
+    <div>
+      <label>ユーザー名：</label>
+      <input type="text" name="name">
+    </div>
+    <div>
+      <label>パスワード：</label>
+      <input type="password" name="password">
+    </div>
+    <div>
+      <input type="submit" value="ログイン">
+    </div>
+  <% end %>
+<% end %>
+

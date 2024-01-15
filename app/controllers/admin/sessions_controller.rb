@@ -13,7 +13,7 @@ class Admin::SessionsController < Admin::Base
     def destroy
         # session.delete(:member_id)
         cookies.delete(:admin_id)
-        redirect_to :admin_root
+        redirect_to :root
     end
 end
   

@@ -1,6 +1,9 @@
-<% @page_title = "カートに追加" %>
-<h2><%= "#{@plan.name}を#{@page_title}しますか？" %></h2>
-<%= link_to "追加する", cart_path, method: :post %>
+<% @page_title = "予約を確定" %>
+<h2><%= "以下の内容で#{@page_title}しますか？" %></h2>
+
+<%= link_to "確定する", orders_path, method: :post %>
+
+<div class="toolbar"><%= link_to "カートの詳細に戻る", cart_path %></div>
 
 <% if @parts.present? %>
   <br>

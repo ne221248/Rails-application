@@ -10,24 +10,30 @@ Rails.application.routes.draw do
     resource :cart, only: [:edit, :new]
   end
 
-  resource :cart 
+  resource :cart, only: [:show, :edit, :update, :create, :destroy]
   resource :session, only: [:create, :destroy]
   resource :account, only: [:show, :edit, :update, :new, :create]
   resource :password, only: [:show, :edit, :update]
+  resources :orders
 
   # 管理者
   namespace :admin do
+    root "top#index"
     #root to: "tops#login"
     #get "admin" ==> "session#create"
     #get "login", to: "sessions#new", ad: :login
     #post "login", to: "sessiosn#create"
     #delete "logout", to: "sessions#destroy", as: :logout
+    resource :session, only: [:create, :destroy]
 
     resources :members
     resources :plans do
       get "search", on: :collection
     end
     resources :parts do
+      get "search", on: :collection
+    end
+    resources :orders do
       get "search", on: :collection
     end
   end
@@ -39,6 +45,7 @@ Rails.application.routes.draw do
     #get "login", to: "sessions#new", ad: :login
     #post "login", to: "sessiosn#create"
     #delete "logout", to: "sessions#destroy", as: :logout
+    resource :session, only: [:create, :destroy]
 
     resources :orders do
       get "search", on: :collection

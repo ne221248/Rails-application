@@ -1,0 +1,10 @@
+<% @page_title = "予約一覧" %>
+<h2><%= "#{@member.name}の#{@page_title}" %></h2>
+
+<% if @orders.present? %>
+
+<% else %>
+ <p>予約が存在しません</p>
+<% end %>
+
+

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+    before_action :update_expiration_time
+
     private def current_member
         # Member.find_by(id: session[:member_id]) if session[:member_id]
         Member.find_by(id: cookies.signed[:member_id]) if cookies.signed[:member_id]
@@ -14,6 +16,14 @@ class ApplicationController < ActionController::Base
         Operator.find_by(id: cookies.signed[:operator_id]) if cookies.signed[:operator_id]
     end
     helper_method :current_operator
+
+    private def sum_prices(prices) #パーツの合計金額を返すメソッド
+        sum = 0
+        prices.each do |price|
+            sum += price
+        end
+        sum
+    end
 
     class LoginRequired < StandardError; end
     class Forbidden < StandardError; end
