@@ -45,6 +45,14 @@ class ApplicationController < ActionController::Base
         cookies.signed[:member_id] = { value: cookies.signed[:member_id], expires: 900.second.from_now} if cookies[:member_id] # 15→900に変更
     end
 
+    private def update_admin_expiration_time  # クッキーに関するメソッド
+        cookies.signed[:admin_id] = { value: cookies.signed[:admin_id], expires: 900.second.from_now} if cookies[:admin_id] # 15→900に変更
+    end
+
+    private def update_operator_expiration_time  # クッキーに関するメソッド
+        cookies.signed[:operator_id] = { value: cookies.signed[:operator_id], expires: 900.second.from_now} if cookies[:operator_id] # 15→900に変更
+    end
+
     private def rescue_bad_request(exception)
         render "errors/bad_request", status: 400, layout: "error",
             formats: [:html]

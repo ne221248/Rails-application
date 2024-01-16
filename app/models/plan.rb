@@ -1,7 +1,7 @@
 class Plan < ApplicationRecord
     has_many :configurations
     has_many :part_plans
-    has_many :parts, through: :assignments
+    has_many :parts, through: :part_plans
 
     class << self
         def serch(query, usertype)

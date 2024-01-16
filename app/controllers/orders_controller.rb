@@ -67,6 +67,18 @@ class OrdersController < ApplicationController
                 # Configurationに追加
                 configuration.save
             end
+            # @partsに格納
+            @configurations = @order.configurations
+            my_objects = []
+            array = []
+            @configurations.each_with_index do |configuration, idx|
+                array[idx] = configuration.part_id
+            end
+            array.each do |id|
+                my_objects << Part.find_by(id: id)
+            end
+            @parts = my_objects
+
             redirect_to orders_path , notice: "予約を確定しました"
 
         else

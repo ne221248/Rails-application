@@ -1,7 +1,7 @@
 class Part < ApplicationRecord
     belongs_to :part_type
     has_many :part_plans
-    has_many :plans, through: :assignments
+    has_many :plans, through: :part_plans
     has_many :configurations
 
     class << self

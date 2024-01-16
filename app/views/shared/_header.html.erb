@@ -1,15 +1,15 @@
 <% if current_admin %>
   <ul class="account-menu">
-    <%= menu_link_to current_admin.name + "さん", :account %> <!-- showアクションへのリンク -->
-    <%= menu_link_to "ログアウト", :session,
+    <%= menu_link_to current_admin.name + "さん", "#" %>
+    <%= menu_link_to "ログアウト", [:admin, :session],
         method: :delete, data: { confirm: "ログアウトしますか？" } %>
   </ul>
 <% end %>
 
 <% if current_operator %>
   <ul class="account-menu">
-    <%= menu_link_to current_operator.name + "さん", :account %> <!-- showアクションへのリンク -->
-    <%= menu_link_to "ログアウト", :session,
+    <%= menu_link_to current_operator.name + "さん", "#" %> 
+    <%= menu_link_to "ログアウト", [:operator, :session],
         method: :delete, data: { confirm: "ログアウトしますか？" } %>
   </ul>
 <% end %>

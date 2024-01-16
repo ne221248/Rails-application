@@ -1,4 +1,4 @@
-<%= render "shared/login_form" unless current_member%>
+<%= render "shared/login_form" unless current_member || current_admin || current_operator%>
 
 <h2>メニュー</h2>
 <%= 

@@ -33,4 +33,9 @@ class AccountsController < ApplicationController
     end
   end
 
+  def destroy
+    @member = current_member
+    @member.destroy
+    redirect_to :root, notice: "ユーザを削除しました"
+  end
 end
