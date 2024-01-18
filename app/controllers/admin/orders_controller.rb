@@ -6,6 +6,7 @@ class Admin::OrdersController < Admin::Base
 
     def show
         @order = Order.find_by(id: params[:id])
+        @member = Member.find_by(id: @order.member_id)
         @configurations = @order.configurations
     end
 

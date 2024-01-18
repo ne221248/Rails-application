@@ -7,15 +7,9 @@ class OrdersController < ApplicationController
     end
 
     def show
-
-    end
-
-    def edit
-
-    end
-
-    def update
-
+        @member = current_member
+        @order = Order.find_by(id: params[:id])
+        @configurations = @order.configurations
     end
 
     def new
@@ -54,8 +48,7 @@ class OrdersController < ApplicationController
             amount: order["amount"],
             status: order["status"]
         )
-        p "デバック用"
-        p @order
+
         if @order.save
             configurations = @cart.configurations
             # @configurationsのcart_idを削除し、@orderと関連付ける。
@@ -79,6 +72,8 @@ class OrdersController < ApplicationController
             end
             @parts = my_objects
 
+            # 在庫を一つ減らす
+
             redirect_to orders_path , notice: "予約を確定しました"
 
         else
@@ -88,7 +83,9 @@ class OrdersController < ApplicationController
     end
 
     def destroy
-
+        @order = Order.find_by(id: params[:id])
+        @order.destroy
+        redirect_to orders_path, notice: "予約を削除しました"
     end
     
 end

@@ -17,6 +17,7 @@ class AccountsController < ApplicationController
     @member = Member.new(params[:account]) # newメソッドでフォームから送られてきたパラメータを使ってモデルオブジェクトを作成
     if @member.save  # 保存に成功したらtrueが返ってくる
       Cart.create(member_id: @member.id)
+      cookies.signed[:member_id] = @member.id # アカウント作成と同時にログインできるようにする
       redirect_to :root, notice: "会員を登録しました。"
     else
       render "new"

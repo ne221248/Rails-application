@@ -2,25 +2,27 @@ class PlansController < ApplicationController
 
     def index #プラン一覧表示
         @plans = Plan.order("id") 
+        @cpu_names = Part.joins(:part_type).where(part_types: { kind: 'CPU' }).pluck(:name)
+        @cpu_names.unshift("指定なし")
+        @gpu_names = Part.joins(:part_type).where(part_types: { kind: 'GPU' }).pluck(:name)
+        @gpu_names.unshift("指定なし")
     end
 
     def show #プラン詳細表示
         @plan = Plan.find_by(id: params[:id])
-        part_plans = PartPlan.where(plan_id: @plan.id)
-
-        my_objects = []
-        array = []
-        part_plans.each_with_index do |part_plan, idx|
-            array[idx] = part_plan.part_id
+        @parts = @plan.parts
+        # 在庫がないpartを保有するplanの場合、saleをfalseにする
+        @parts.each do |part|
+            @plan.sale = false if part.inventory == 0
         end
-        array.each do |id|
-            my_objects << Part.find_by(id: id)
-        end
-        @parts = my_objects
     end
 
     def search
-        @plans = Plan.serch(params[:q], params[:u])
+        @plans = Plan.search(params[:query1], params[:query2], params[:query3])
+        @cpu_names = Part.joins(:part_type).where(part_types: { kind: 'CPU' }).pluck(:name)
+        @cpu_names.unshift("指定なし")
+        @gpu_names = Part.joins(:part_type).where(part_types: { kind: 'GPU' }).pluck(:name)
+        @gpu_names.unshift("指定なし")
         render "index"
     end
 end
