@@ -1,6 +1,4 @@
 #中間テーブル
-plan_id = [1,2,3,4,5,6]
-part_id = [1, 2, 1, 2]
 
 #A
 plan = Plan.find_by(id: 1)
@@ -98,7 +96,7 @@ end
 plan = Plan.find_by(id: 5)
 cpu  = Part.find_by(id: 5)#1
 gpu  = Part.find_by(id: 11)#2
-os   = Part.find_by(id: 15)#3
+os   = Part.find_by(id: 14)#3
 mo   = Part.find_by(id: 17)#4
 ram  = Part.find_by(id: 20)#5
 st   = Part.find_by(id: 23)#6
@@ -122,7 +120,7 @@ end
 plan = Plan.find_by(id: 6)
 cpu  = Part.find_by(id: 6)#1
 gpu  = Part.find_by(id: 12)#2
-os   = Part.find_by(id: 15)#3
+os   = Part.find_by(id: 14)#3
 mo   = Part.find_by(id: 17)#4
 ram  = Part.find_by(id: 21)#5
 st   = Part.find_by(id: 23)#6
