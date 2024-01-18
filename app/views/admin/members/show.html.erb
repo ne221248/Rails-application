@@ -24,3 +24,8 @@
     <td><%= @member.telephone %></td>
   </tr>
 </table>
+
+<div class="toolbar">
+  <%= link_to "削除", [:admin, @member], method: :delete,
+     data: { confirm: "本当に削除しますか？" } %>
+</div>

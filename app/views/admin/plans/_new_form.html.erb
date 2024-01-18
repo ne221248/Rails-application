@@ -1,0 +1,69 @@
+<%= render "shared/errors", obj: @plan %>
+
+<table class="attr">
+  <tr>
+    <th><%= form.label :name, "名称" %></th>
+    <td><%= form.text_field :name %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :description, "説明" %></th>
+    <td><%= form.text_field :description %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :usertype, "おすすめのユーザ" %></th>
+    <td><%= form.text_field :usertype %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :cpu, "CPU" %></th>
+    <td><%= form.collection_select :cpu, Part.where(part_type_id: 1), :id, :name, prompt: "選択してください"%></td>
+    </tr>
+
+  <tr>
+    <th><%= form.label :gpu, "GPU" %></th>
+    <td><%= form.collection_select :gpu, Part.where(part_type_id: 2), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :os, "OS" %></th>
+    <td><%= form.collection_select :os, Part.where(part_type_id: 3), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :motherboard, "マザーボード" %></th>
+    <td><%= form.collection_select :motherboard, Part.where(part_type_id: 4), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :ram, "メモリ" %></th>
+    <td><%= form.collection_select :ram, Part.where(part_type_id: 5), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :storage, "ストレージ" %></th>
+    <td><%= form.collection_select :storage, Part.where(part_type_id: 6), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :power, "電源" %></th>
+    <td><%= form.collection_select :power, Part.where(part_type_id: 7), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :case, "PCケース" %></th>
+    <td><%= form.collection_select :box, Part.where(part_type_id: 8), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :cool, "冷却機" %></th>
+    <td><%= form.collection_select :cool, Part.where(part_type_id: 9), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :drive, "光学ドライブ" %></th>
+    <td><%= form.collection_select :drive, Part.where(part_type_id: 10), :id, :name, prompt: "選択してください"%></td>
+  </tr>
+
+</table>

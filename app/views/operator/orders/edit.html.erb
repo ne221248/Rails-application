@@ -1,0 +1,22 @@
+<% @page_title = "予約ステータスの変更" %>
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "予約の詳細に戻る", [:operator, @order] %></div>
+
+<%= form_for [:operator, @order] do |form| %>
+    <table class="attr">
+        <tr>
+            <th>予約No.</th>
+            <td><%= @order.id %></td>
+        </tr>
+        <tr>
+            <th>金額</th>
+            <td><%= @order.amount %></td>
+        </tr>
+        <tr>
+            <th>予約ステータス</th>
+            <td><%= form.select :status, [["予約済み", "予約済み"], ["製作中", "製作中"], ["発送済み", "発送済み"]], selected: @order.status%></td>
+        </tr>
+    </table>
+  <div><%= form.submit "更新する" %></div>
+<% end %>

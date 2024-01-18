@@ -4,6 +4,6 @@
 <div class="toolbar"><%= link_to "プランの詳細に戻る", [:admin, @plan] %></div>
 
 <%= form_for [:admin, @plan] do |form| %>
-  <%= render "form", form: form %>
+  <%= render "edit_form", form: form %>
   <div><%= form.submit "更新する" %></div>
 <% end %>

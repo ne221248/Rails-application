@@ -1,0 +1,53 @@
+<% @page_title = "予約の詳細" %>
+<h2><%= @page_title %></h2>
+
+<ul class="toolbar">
+  <p><%= link_to "予約一覧に戻る", :operator_orders %></p>
+</ul>
+
+<table class="list">
+    <thead>
+      <tr>
+        <th>予約No.</th>
+        <th>金額</th>
+        <th>予約ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td style="text-align: center"><%= @order.id %></td>
+        <td style="text-align: center"><%= @order.amount %></td>
+        <td style="text-align: center"><%= @order.status %></td>
+        <td>
+              <%= link_to "予約ステータスを編集する", [:edit, :operator, @order] %>    
+        </td>
+      </tr>
+    </tbody>
+</table>
+
+<br>
+<h2>予約内容</h2>
+<br>
+
+<table class="attr">
+    <thead>
+    <tr>
+        <th>タイプ</th>
+        <th>パーツ名</th>
+        <th>金額</th>
+        <th>在庫</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @configurations.each do |configuration| %>
+        <% part = Part.find_by(id: configuration.part_id) %>
+        <tr>
+            <td style="text-align: center"><%= part_type(part) %></td>
+            <td style="text-align: center"><%= part.name %></td>
+            <td style="text-align: center"><%= part.price %></td>
+            <td style="text-align: center"><%= part.inventory %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+ 
