@@ -1,0 +1,54 @@
+
+<table class="attr">
+
+  <tr>
+    <th>CPU</th>
+    <td><%= @cpu.name %></td>
+  </tr>
+
+  <tr>
+    <th>GPU</th>
+    <td><%= @gpu.name %></td>
+  </tr>
+
+  <tr>
+    <th>マザーボード</th>
+    <td><%= @motherboard.name %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :os, "OS" %></th>
+    <td><%= form.collection_select :os, Part.where(part_type_id: 3).where("inventory > 0"), :id, :name, selected: @os&.id %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :ram, "メモリ" %></th>
+    <td><%= form.collection_select :ram, Part.where(part_type_id: 5).where("inventory > 0"), :id, :name, selected: @ram&.id %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :storage, "ストレージ" %></th>
+    <td><%= form.collection_select :storage, Part.where(part_type_id: 6).where("inventory > 0"), :id, :name, selected: @storage&.id %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :power, "電源" %></th>
+    <td><%= form.collection_select :power, Part.where(part_type_id: 7).where("inventory > 0"), :id, :name, selected: @power&.id %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :case, "PCケース" %></th>
+    <td><%= form.collection_select :box, Part.where(part_type_id: 8).where("inventory > 0"), :id, :name, selected: @box&.id %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :cool, "冷却機" %></th>
+    <td><%= form.collection_select :cool, Part.where(part_type_id: 9).where("inventory > 0"), :id, :name, selected: @cool&.id %></td>
+  </tr>
+
+  <tr>
+    <th><%= form.label :drive, "光学ドライブ" %></th>
+    <td><%= form.collection_select :drive, Part.where(part_type_id: 10).where("inventory > 0"), :id, :name, selected: @drive&.id %></td>
+  </tr>
+
+</table>

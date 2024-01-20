@@ -21,7 +21,7 @@ class Admin::PartsController < Admin::Base
         @part = Part.find_by(id: params[:id])
         @part.assign_attributes(params[:part])
         if @part.save
-            redirect_to [:admin, @part], notice: "プランの情報を更新しました"
+            redirect_to [:admin, @part], notice: "パーツの情報を更新しました"
         else
             render "edit"
         end
@@ -34,7 +34,7 @@ class Admin::PartsController < Admin::Base
     def create
         @part = Part.new(params[:part])
         if @part.save
-            redirect_to [:admin, @part], notice: "プランの情報を更新しました"
+            redirect_to [:admin, @part], notice: "パーツを作成しました"
         else
             render "edit"
         end
@@ -43,7 +43,7 @@ class Admin::PartsController < Admin::Base
     def destroy
         @part = Part.find_by(id: params[:id])
         @part.destroy
-        redirect_to [:admin, @part], notice: "プランを削除しました"
+        redirect_to [:admin, @part], notice: "パーツを削除しました"
     end
 
 end

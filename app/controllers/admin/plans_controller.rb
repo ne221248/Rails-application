@@ -27,10 +27,84 @@ class Admin::PlansController < Admin::Base
     def edit #プランの変更
         @plan = Plan.find_by(id: params[:id])
         @parts = @plan.parts
+
+        @parts.each do |part|
+            if part.part_type_id == 1
+                @cpu = part
+            elsif part.part_type_id == 2
+                @gpu = part
+            elsif part.part_type_id == 4
+                @motherboard = part
+            elsif part.part_type_id == 3
+                @os = part
+            elsif part.part_type_id == 5
+                @ram = part
+            elsif part.part_type_id == 6
+                @storage = part
+            elsif part.part_type_id == 7
+                @power = part
+            elsif part.part_type_id == 8
+                @box = part
+            elsif part.part_type_id == 9
+                @cool = part
+            elsif part.part_type_id == 10
+                @drive = part
+            end
+        end
     end
 
     def update #プランの更新(PartPlanクラスについてもやるべき)
         @plan = Plan.find_by(id: params[:id])
+        @parts = @plan.parts
+
+        @parts.each do |part|
+            if part.part_type_id == 1
+                @plan.part.assign_attributes(
+                    part: params[:plan][:cpu]
+                )
+            elsif part.part_type_id == 2
+                @plan.part.assign_attributes(
+                    part: params[:plan][:gpu]
+                )
+            elsif part.part_type_id == 3
+                @plan.part.assign_attributes(
+                    part: params[:plan][:os]
+                )
+            elsif part.part_type_id == 4
+                @plan.part.assign_attributes(
+                    part: params[:plan][:motherboard]
+                )
+            elsif part.part_type_id == 5
+                @plan.part.assign_attributes(
+                    part: params[:plan][:ram]
+                )
+            elsif part.part_type_id == 6
+                @plan.part.assign_attributes(
+                    part: params[:plan][:storage]
+                )
+            elsif part.part_type_id == 7
+                @plan.part.assign_attributes(
+                    part: params[:plan][:power]
+                )
+            elsif part.part_type_id == 8
+                @plan.part.assign_attributes(
+                    part: params[:plan][:case]
+                )
+            elsif part.part_type_id == 9
+                @plan.part.assign_attributes(
+                    part: params[:plan][:cool]
+                )
+            elsif part.part_type_id == 10
+                @plan.part.assign_attributes(
+                    part: params[:plan][:drive]
+                )
+            else
+                @plan.part.assign_attributes(
+                    part: part
+                )
+            end
+        end
+
         @plan.assign_attributes(params[:plan])
         if @plan.save
             redirect_to [:admin, @plan], notice: "プランの情報を更新しました"

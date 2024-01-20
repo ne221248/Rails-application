@@ -1,11 +1,5 @@
 <% @page_title = "予約の詳細" %>
-<h1><%= @page_title %></h1>
-
-<ul class="toolbar">
-  <p><%= link_to "予約一覧に戻る", :admin_orders %></p>
-</ul>
-
-<p>これは、「<%= @member.name %>」の予約です</p>
+<h2><%= @page_title %></h2>
 
 <table class="attr">
     <thead>
@@ -13,7 +7,6 @@
         <th>タイプ</th>
         <th>パーツ名</th>
         <th>金額</th>
-        <th>在庫</th>
     </tr>
     </thead>
     <tbody>
@@ -23,13 +16,14 @@
             <td style="text-align: center"><%= part_type(part) %></td>
             <td style="text-align: center"><%= part.name %></td>
             <td style="text-align: center"><%= part.price %></td>
-            <td style="text-align: center"><%= part.inventory %></td>
         </tr>
     <% end %>
     </tbody>
 </table>
 
+<% if @order.status == "予約済み" %>
 <div class="toolbar">
-    <%= link_to "予約を削除", [:admin, @order], method: :delete,
+    <%= link_to "予約を削除", @order, method: :delete,
         data: { confirm: "本当に削除しますか？" } %> 
 </div>            
+<% end %>

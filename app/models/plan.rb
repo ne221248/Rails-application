@@ -43,7 +43,7 @@ class Plan < ApplicationRecord
                 plans = plans.joins(:parts).where(parts: { id: parts1.pluck(:id) }) if q1 != "指定なし"
                 plans = plans.joins(:parts).where(parts: { id: parts2.pluck(:id) }) if q2 != "指定なし"
             end
-            plans = plans.where(usertype: query3) if q3 != "指定なし"
+            plans = plans.where(usertype: q3) if q3 != "指定なし"
             plans #絞り込んだ条件のplanを返す
         end
     end

@@ -25,7 +25,6 @@ class CartsController < ApplicationController
         member = current_member
         @cart = Cart.find_by(member_id: member.id)
         @configurations = @cart.configurations
-        session[:configurations] = @configurations
         my_objects = []
         array = []
         @configurations.each_with_index do |configuration, idx|
@@ -35,21 +34,80 @@ class CartsController < ApplicationController
             my_objects << Part.find_by(id: id)
         end
         @parts = my_objects
+
+        @parts.each do |part|
+            if part.part_type_id == 1
+                @cpu = part
+            elsif part.part_type_id == 2
+                @gpu = part
+            elsif part.part_type_id == 4
+                @motherboard = part
+            elsif part.part_type_id == 3
+                @os = part
+            elsif part.part_type_id == 5
+                @ram = part
+            elsif part.part_type_id == 6
+                @storage = part
+            elsif part.part_type_id == 7
+                @power = part
+            elsif part.part_type_id == 8
+                @box = part
+            elsif part.part_type_id == 9
+                @cool = part
+            elsif part.part_type_id == 10
+                @drive = part
+            end
+        end
     end
 
     def update
         member = current_member
         @cart = Cart.find_by(member_id: member.id)
-        configurations = session[:configurations] 
+        configurations = @cart.configurations
         configurations.each do |configuration|
             # Configuration モデルのインスタンスを生成
-            p "てすと"
-            p configuration.class
-            configuration.assign_attributes(
-                part_id: configuration["part_id"],
-                plan_id: configuration["plan_id"],
-                cart_id: configuration["cart_id"]
-            )
+            part = configuration.part
+            if part.part_type_id == 3
+                configuration.assign_attributes(
+                    part_id: params[:cart][:os],
+                    cart_id: @cart.id
+                )
+            elsif part.part_type_id == 5
+                configuration.assign_attributes(
+                    part_id: params[:cart][:ram],
+                    cart_id: @cart.id
+                )
+            elsif part.part_type_id == 6
+                configuration.assign_attributes(
+                    part_id: params[:cart][:storage],
+                    cart_id: @cart.id
+                )
+            elsif part.part_type_id == 7
+                configuration.assign_attributes(
+                    part_id: params[:cart][:power],
+                    cart_id: @cart.id
+                )
+            elsif part.part_type_id == 8
+                configuration.assign_attributes(
+                    part_id: params[:cart][:box],
+                    cart_id: @cart.id
+                )
+            elsif part.part_type_id == 9
+                configuration.assign_attributes(
+                    part_id: params[:cart][:cool],
+                    cart_id: @cart.id
+                )
+            elsif part.part_type_id == 10
+                configuration.assign_attributes(
+                    part_id: params[:cart][:drive],
+                    cart_id: @cart.id
+                )
+            else
+                configuration.assign_attributes(
+                    part_id: part.id,
+                    cart_id: @cart.id
+                )
+            end
             # Configurationに追加
             configuration.save
         end

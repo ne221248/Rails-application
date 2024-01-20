@@ -1,30 +1,29 @@
 <% @page_title = "プランの詳細" %>
 <h1><%= @page_title %></h1>
 
-<div class="toolbar">
-    <p><%= link_to "#{@plan.name}プランのパーツ構成を変更する", edit_plan_cart_path(@plan) %></p>
-    <p><%= link_to "#{@plan.name}プランをカートに追加する", new_plan_cart_path(@plan) %></p>
-</div>
+<% if @plan.sale == true %>
+  <div class="toolbar">
+      <p><%= link_to "#{@plan.name}をカートに追加する", new_plan_cart_path(@plan) %></p>
+  </div>
+<% else %>
+  <p>在庫がないため、プランを追加できません</p>
+<% end %>
 
 <% if @parts.present? %>
   <table class="attr">
     <thead>
       <tr>
+        <th>タイプ</th>
         <th>パーツ名</th>
         <th>金額</th>
-        <th>タイプ</th>
-        <th>グループ</th>
-        <th>在庫</th>
       </tr>
     </thead>
     <tbody>
       <% @parts.each do |part| %>
         <tr>
-          <td style="text-align: right"><%= part.name %></td>
-          <td><%= part.price %></td>
-          <td><%= part_type(part) %></td>
-          <td><%= part.group %></td>
-          <td><%= part.inventory %></td>
+          <td style="text-align: center"><%= part_type(part) %></td>
+          <td style="text-align: center"><%= part.name %></td>
+          <td style="text-align: center"><%= part.price %></td>
         </tr>
       <% end %>
     </tbody>

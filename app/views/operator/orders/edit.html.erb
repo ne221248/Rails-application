@@ -3,6 +3,8 @@
 
 <div class="toolbar"><%= link_to "予約の詳細に戻る", [:operator, @order] %></div>
 
+<p>これは、「<%= @member.name %>」の予約です</p>
+
 <%= form_for [:operator, @order] do |form| %>
     <table class="attr">
         <tr>

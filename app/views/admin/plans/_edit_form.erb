@@ -18,52 +18,52 @@
 
   <tr>
     <th><%= form.label :cpu, "CPU" %></th>
-    <td><%= form.collection_select :cpu, Part.where(part_type_id: 1), :id, :name, selected: :name%></td>
-    </tr>
+    <td><%= form.collection_select :cpu, Part.where(part_type_id: 1), :id, :name, selected: @cpu&.id%></td>
+  </tr>
 
   <tr>
     <th><%= form.label :gpu, "GPU" %></th>
-    <td><%= form.collection_select :gpu, Part.where(part_type_id: 2), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :gpu, Part.where(part_type_id: 2), :id, :name, selected: @gpu&.id%></td>
   </tr>
 
   <tr>
     <th><%= form.label :os, "OS" %></th>
-    <td><%= form.collection_select :os, Part.where(part_type_id: 3), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :os, Part.where(part_type_id: 3), :id, :name, selected: @os&.id%></td>
   </tr>
 
   <tr>
     <th><%= form.label :motherboard, "マザーボード" %></th>
-    <td><%= form.collection_select :motherboard, Part.where(part_type_id: 4), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :motherboard, Part.where(part_type_id: 4), :id, :name, selected: @motherboard&.id%></td>
   </tr>
 
   <tr>
     <th><%= form.label :ram, "メモリ" %></th>
-    <td><%= form.collection_select :ram, Part.where(part_type_id: 5), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :ram, Part.where(part_type_id: 5), :id, :name, selected: @ram&.id%></td>
   </tr>
 
   <tr>
     <th><%= form.label :storage, "ストレージ" %></th>
-    <td><%= form.collection_select :storage, Part.where(part_type_id: 6), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :storage, Part.where(part_type_id: 6), :id, :name, selected: @storage&.id%></td>
   </tr>
 
   <tr>
     <th><%= form.label :power, "電源" %></th>
-    <td><%= form.collection_select :power, Part.where(part_type_id: 7), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :power, Part.where(part_type_id: 7), :id, :name, selected: @power&.id%></td>
   </tr>
 
   <tr>
     <th><%= form.label :case, "PCケース" %></th>
-    <td><%= form.collection_select :box, Part.where(part_type_id: 8), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :box, Part.where(part_type_id: 8), :id, :name, selected: @case&.id%></td>
   </tr>
 
   <tr>
     <th><%= form.label :cool, "冷却機" %></th>
-    <td><%= form.collection_select :cool, Part.where(part_type_id: 9), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :cool, Part.where(part_type_id: 9), :id, :name, selected: @cool&.id%></td>
   </tr>
 
   <tr>
     <th><%= form.label :drive, "光学ドライブ" %></th>
-    <td><%= form.collection_select :drive, Part.where(part_type_id: 10), :id, :name, selected: :name%></td>
+    <td><%= form.collection_select :drive, Part.where(part_type_id: 10), :id, :name, selected: @drive&.id%></td>
   </tr>
 
 </table>

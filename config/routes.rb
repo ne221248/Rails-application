@@ -7,14 +7,14 @@ Rails.application.routes.draw do
 
   resources :plans, only: [:index, :show] do
     get "search", on: :collection
-    resource :cart, only: [:edit, :new]
+    resource :cart, only: [:new]
   end
 
   resource :cart, only: [:show, :edit, :update, :create, :destroy]
   resource :session, only: [:create, :destroy]
   resource :account, only: [:show, :edit, :update, :new, :create, :destroy]
   resource :password, only: [:show, :edit, :update]
-  resources :orders
+  resources :orders, only: [:index, :show, :new, :create, :destroy]
 
   # 管理者、オペレータのログイン用
   get "/admin_login" => "top#admin_login"
@@ -32,17 +32,13 @@ Rails.application.routes.draw do
     resources :parts do
       get "search", on: :collection
     end
-    resources :orders do
-      get "search", on: :collection
-    end
+    resources :orders, only: [:index, :show, :destroy]
   end
 
   # オペレーター
   namespace :operator do
     root "top#index"
     resource :session, only: [:create, :destroy]
-    resources :orders do
-      get "search", on: :collection
-    end
+    resources :orders, only: [:index, :show, :edit, :update]
   end
 end

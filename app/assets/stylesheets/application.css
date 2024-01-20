@@ -29,7 +29,7 @@ a:hover { color: #f00; }
 a img { border: none; }
 
 /* ブロック要素 */
-p, h1, h2, h3, table, ul {
+p, p3, h1, h2, h3, table, ul {
   margin: 0 0 1em;
 }
 
@@ -144,17 +144,26 @@ main h1 {
 }
 
 main h2 {
-  color: #99d;
+  color: rgb(216, 215, 161);
   font-weight: bold;
   font-size: 120%;
   margin-bottom: 0.5em;
-  border-bottom: 1px solid #ccf;
+  border-bottom: 1px solid #ffdeca;
+}
+
+main h3 {
+  font-size: 110%;
+  font-weight: bold;
+  padding: 10px 30px 10px 15px;
+  margin-bottom: 1em;
+  border-left: 5px solid #ffdeca;
 }
 
 main p {
   font-size: 90%;
   line-height: 1.5;
 }
+
 
 ul.toolbar,
 div.toolbar {

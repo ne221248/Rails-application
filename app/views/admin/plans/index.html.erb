@@ -1,15 +1,21 @@
 <% @page_title = "プラン管理" %>
 <h1><%= @page_title %></h1>
-
-<%= form_tag :search_admin_plans, method: :get, class: "search" do %>
-  <%= select_tag "q", options_for_select(["指定なし", "10万~20万", "20万~30万", "30万~"], selected: "指定なし") %>
-  <%= select_tag "u", options_for_select(["指定なし", "エントリー", "ミドル", "ハイエンド"], selected: "指定なし") %>
-  <%= submit_tag "検索" %>
-<% end %>
-
 <div class="toolbar">
     <p><%= link_to "プランの新規登録", :new_admin_plan %></p>
 </div>
+
+<h3>検索欄</h3>
+<%= form_tag :search_admin_plans, method: :get, class: "search" do %>
+  <p1>CPUの指定
+  <%= select_tag :query1, options_for_select(@cpu_names) %></p1><br>
+  <p1>GPUの指定
+  <%= select_tag :query2, options_for_select(@gpu_names) %></p1><br>
+  <p1>おすすめのユーザの指定
+  <%= select_tag :query3, options_for_select(["指定なし", "エントリー", "ミドル", "ハイエンド"]) %>
+  <%= submit_tag "検索" %></p1>
+<% end %>
+<br>
+
 
 <% if @plans.present? %>
   <table class="list">

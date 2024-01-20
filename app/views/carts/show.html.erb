@@ -2,33 +2,33 @@
 <h1><%= @page_title %></h1>
 
 <% if @configurations.present? %>
-  <div class="toolbar"><%= link_to "編集", edit_cart_path %></div>
+  <div class="toolbar">
+    <%= link_to "カートの内容を編集する", edit_cart_path %> |
+    <%= link_to "カートを削除する", cart_path, method: :delete,
+      data: { confirm: "本当に削除しますか？" } %>
+  </div>
   <br>
-  <h3>カートの内容</h3>
+  <h2>カートの内容</h2>
+  <br>
   <table class="attr">
     <thead>
       <tr>
+        <th>タイプ</th>
         <th>パーツ名</th>
         <th>金額</th>
-        <th>タイプ</th>
-        <th>グループ</th>
-        <th>在庫</th>
       </tr>
     </thead>
     <tbody>
       <% @parts.each do |part| %>
         <tr>
-          <td style="text-align: right"><%= part.name %></td>
-          <td><%= part.price %></td>
-          <td><%= part_type(part) %></td>
-          <td><%= part.group %></td>
-          <td><%= part.inventory %></td>
+          <td style="text-align: center"><%= part_type(part) %></td>
+          <td style="text-align: center"><%= part.name %></td>
+          <td style="text-align: center"><%= part.price %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <div class="toolbar"><%= link_to "予約を確定する", new_order_path %></div>
 <% else %>
-  <h3>カートは空です。</h3>
-  <p><%= link_to "Top", Plan %></p>
+  <p>カートは空です。</p>
 <% end %>
