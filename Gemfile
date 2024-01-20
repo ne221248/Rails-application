@@ -36,3 +36,5 @@ group :development do
   # gem "spring"
 end
 
+gem 'validate_email', '~> 0.1.6'
+

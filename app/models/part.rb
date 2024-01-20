@@ -4,6 +4,12 @@ class Part < ApplicationRecord
     has_many :plans, through: :part_plans
     has_many :configurations
 
+    validates :name, presence: true, uniqueness: true
+    validates :inventory, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :price, presence: true
+    
+
+
     class << self
         def serch(parttype, zaiko)
             rel = order("id")
