@@ -14,7 +14,7 @@ class Admin::PlansController < Admin::Base
     end
 
     def search
-        @plans = Plan.search(params[:query1], params[:query2], params[:query3])
+        @plans = Plan.search(params[:q1], params[:q2], params[:q3])
         @cpu_names = Part.joins(:part_type).where(part_types: { kind: 'CPU' }).pluck(:name)
         @cpu_names.unshift("指定なし")
         @gpu_names = Part.joins(:part_type).where(part_types: { kind: 'GPU' }).pluck(:name)

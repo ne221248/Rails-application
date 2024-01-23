@@ -7,7 +7,7 @@ class Operator::SessionsController < ApplicationController
             redirect_to :operator_root
         else
             flash.alert = "名前とパスワードが一致しません"
-            redirect_to "operator_login"
+            redirect_to "/operator_login"
         end
     end
   
