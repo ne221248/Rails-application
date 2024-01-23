@@ -38,3 +38,7 @@ end
 
 gem 'validate_email', '~> 0.1.6'
 
+# Generates ER-diagrams using Graphviz, a visualization library
+gem 'rails-erd'
+
+
