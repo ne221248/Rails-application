@@ -7,7 +7,7 @@ class Member < ApplicationRecord
 
     attr_accessor :current_password
 
-    validates :password, presence: { if: :current_password }, length: { minimum: 4 }
+    validates :password, presence: { if: :current_password }, length: { minimum: 4 , if: :current_password}
     
     validates :name, presence: true, uniqueness: true
     validates :telephone, presence: true,
