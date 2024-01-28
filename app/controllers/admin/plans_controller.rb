@@ -58,51 +58,114 @@ class Admin::PlansController < Admin::Base
         parts = @plan.parts
 
         parts.each do |part|
+            part_plan = PartPlan.find_by(plan_id: @plan, part_id: part.id)
             if part.part_type_id == 1
+                @cpu = Part.find(params[:plan][:cpu])
                 @plan.assign_attributes(
-                    cpu: Part.find(params[:plan][:cpu])
+                    cpu: @cpu
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @cpu.id
                 )
             elsif part.part_type_id == 2
+                @gpu = Part.find(params[:plan][:gpu])
                 @plan.assign_attributes(
-                    gpu: params[:plan][:gpu]
+                    gpu: @gpu
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @gpu.id
                 )
             elsif part.part_type_id == 3
+                @os = Part.find(params[:plan][:os])
                 @plan.assign_attributes(
-                    os: params[:plan][:os]
+                    os: @os
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @os.id
                 )
             elsif part.part_type_id == 4
+                @motherboard = Part.find(params[:plan][:motherboard])
                 @plan.assign_attributes(
-                    motherboard: params[:plan][:motherboard]
+                    motherboard: @motherboard
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @motherboard.id
                 )
             elsif part.part_type_id == 5
+                @ram = Part.find(params[:plan][:ram])
                 @plan.assign_attributes(
-                    ram: params[:plan][:ram]
+                    ram: @ram
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @ram.id
                 )
             elsif part.part_type_id == 6
+                @storage = Part.find(params[:plan][:storage])
                 @plan.assign_attributes(
-                    storage: params[:plan][:storage]
+                    storage: @storage
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @storage.id
                 )
             elsif part.part_type_id == 7
+                @power = Part.find(params[:plan][:power])
                 @plan.assign_attributes(
-                    power: params[:plan][:power]
+                    power: @power
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @power.id
                 )
             elsif part.part_type_id == 8
+                @box = Part.find(params[:plan][:box])
                 @plan.assign_attributes(
-                    box: params[:plan][:box]
+                    box: @box
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @box.id
                 )
             elsif part.part_type_id == 9
+                @cool = Part.find(params[:plan][:cool])
                 @plan.assign_attributes(
-                    cool: params[:plan][:cool]
+                    cool: @cool
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @cool.id
                 )
             elsif part.part_type_id == 10
+                @drive = Part.find(params[:plan][:drive])
                 @plan.assign_attributes(
-                    drive: params[:plan][:drive]
+                    drive: @drive
+                )
+                part_plan.assign_attributes(
+                    plan_id: @plan.id,
+                    part_id: @drive.id
                 )
             else
+                redirect_to [:admin, @plan], notice: "予期せぬエラーが発生しました。"
             end
+            part_plan.save
         end
 
-        @parts = @plan.parts
+        @parts = [Part.find_by(id: @cpu.id),
+                  Part.find_by(id: @gpu.id),
+                  Part.find_by(id: @os.id),
+                  Part.find_by(id: @motherboard.id),
+                  Part.find_by(id: @ram.id),
+                  Part.find_by(id: @storage.id),
+                  Part.find_by(id: @power.id),
+                  Part.find_by(id: @box.id),
+                  Part.find_by(id: @cool.id),
+                  Part.find_by(id: @drive.id)
+                ]
 
         sum = 0
         @parts.each do |part|

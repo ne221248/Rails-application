@@ -13,7 +13,7 @@
 
   <tr>
     <th><%= form.label :usertype, "おすすめのユーザ" %></th>
-    <td><%= form.text_field :usertype %></td>
+    <td><%= form.select :usertype, options_for_select(["エントリー", "ミドル", "ハイエンド"]), prompt: "選択してください" %></td>
   </tr>
 
   <tr>
@@ -52,7 +52,7 @@
   </tr>
 
   <tr>
-    <th><%= form.label :case, "PCケース" %></th>
+    <th><%= form.label :box, "PCケース" %></th>
     <td><%= form.collection_select :box, Part.where(part_type_id: 8), :id, :name, prompt: "選択してください"%></td>
   </tr>
 
