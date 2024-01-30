@@ -36,7 +36,7 @@ class Admin::PartsController < Admin::Base
         if @part.save
             redirect_to [:admin, @part], notice: "パーツを作成しました"
         else
-            render "edit"
+            render "new"
         end
     end
 

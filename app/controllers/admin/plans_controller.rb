@@ -55,6 +55,7 @@ class Admin::PlansController < Admin::Base
 
     def update #プランの更新(PartPlanクラスについてもやるべき)
         @plan = Plan.find_by(id: params[:id])
+        
         parts = @plan.parts
 
         parts.each do |part|
@@ -173,6 +174,10 @@ class Admin::PlansController < Admin::Base
                 sum += part.price.to_i
             end
         end
+
+        @plan.name = params[:plan][:name]
+        @plan.description = params[:plan][:description]
+        @plan.usertype = params[:plan][:usertype]
        
         @plan.price = sum
         @plan.sale = false

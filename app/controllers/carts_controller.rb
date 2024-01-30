@@ -145,16 +145,27 @@ class CartsController < ApplicationController
             end
             @parts = my_objects
 
-            # configurationの作成
-            my_objects2 = []
-            @parts.each_with_index do |part, idx|
-                my_objects2[idx] = @cart.configurations.build(
-                    plan_id: @plan.id,
-                    part_id: part.id,
-                )
+            flag = true
+            # 在庫判定
+            @parts.each do |part|
+                flag = false if part.inventory == 0
             end
-            @configurations = my_objects2
-            session[:configurations] = @configurations
+
+            if flag == true
+                # configurationの作成
+                my_objects2 = []
+                @parts.each_with_index do |part, idx|
+                    my_objects2[idx] = @cart.configurations.build(
+                        plan_id: @plan.id,
+                        part_id: part.id,
+                    )
+                end
+                @configurations = my_objects2
+                session[:configurations] = @configurations
+            else
+                redirect_to :root, notice: "在庫がなくなりました" 
+            end
+            
         else
             redirect_to cart_path, notice: "既に別のプランがカートに追加されています" #flashにメッセージを入れて、/cartにリダイレクト
         end

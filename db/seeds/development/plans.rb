@@ -10,6 +10,16 @@ sales = [false, true]
         description: descriptions[idx],
         usertype: usertypes[idx%3],
         price: prices[idx],
-        sale: true
+        sale: true,
+        cpu: 0,
+        gpu: 0,
+        os: 0,
+        motherboard: 0,
+        ram: 0,
+        storage: 0,
+        power: 0,
+        box: 0,
+        cool: 0,
+        drive: 0
     )
 end

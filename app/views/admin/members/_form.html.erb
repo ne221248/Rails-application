@@ -6,15 +6,15 @@
     <td><%= form.text_field :name %></td>
   </tr>
   <tr>
-    <th><%= form.label :name, "メールアドレス" %></th>
+    <th><%= form.label :mail, "メールアドレス" %></th>
     <td><%= form.text_field :mail %></td>
   </tr>
   <tr>
-    <th><%= form.label :name, "住所" %></th>
+    <th><%= form.label :address, "住所" %></th>
     <td><%= form.text_field :address %></td>
   </tr>
   <tr>
-    <th><%= form.label :name, "電話番号" %></th>
+    <th><%= form.label :telephone, "電話番号" %></th>
     <td><%= form.text_field :telephone %></td>
   </tr>
   <% if @member.new_record? %>
