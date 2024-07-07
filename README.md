@@ -100,8 +100,17 @@ gh repo clone ne221248/Rails-application
 <br>
 
 ### Step5 ローカル開発環境をセットアップ
-docker ディレクトリで実行
+Rails-appplication ディレクトリで実行
 
+コンテナへログイン
+```sh
+make login
+```
+Rails-applicationディレクトリへ移動
+```sh
+cd Rails-application
+```
+installなどを実行
 ```sh
 make setup
 ```
