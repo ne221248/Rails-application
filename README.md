@@ -3,7 +3,7 @@
 # 技術スタック一覧
 - [Docker](https://www.docker.com/ja-jp/) 仮想コンテナ
 - [Ruby on Rails](https://rubyonrails.org/)　Webアプリケーションフレームワーク
-- [参考書]()
+- [使用教科書](https://www.oiax.jp/rails5book) 改訂4版 基礎Ruby on Rails
 
 # 事前準備
 makefileを使用して環境構築する練習を兼ねて後日記述する
