@@ -49,6 +49,9 @@ docker build -t pc-shop:2024 .
 docker run -p 3000:3000 -v $(pwd)/rails:/var/www -w /var/www --name rails24 -d pc-shop:2024 tail -f /dev/null
 ```
 > `pc-shop:2024`や`rails24`は変えてもok
+
+>dockerディレクトリ下にrailsディレクトリが作成される
+
 > `docker ps`でコンテナが起動しているか確認できる
 
 <br>
@@ -62,20 +65,18 @@ docker exec -it rails24 bash
 >コンテナからロクアウトする場合は`exit`
 
 >コマンドプロンプトスタイルを変更しておくとよい。  
->`echo 'export PS1="\[\e[1;33m\]rails:\w \u\[\e[m\]# "' >> ~/.bashrc`
+>`echo 'export PS1="\[\e[1;33m\]rails:\w \u\[\e[m\]# "' >> ~/.bashrc`    
 >`source ~/.bashrc`
 
 <br>
 
 ### Step3 Railsの確認
-本来であれば、コンテナにログインした状態で`rails -v`　　
+コンテナにログインした状態で`rails -v`　　
 
 Rails 7.0.4のように7系のRailsがインストールされていることを想定している。
 
-本来であれば、railsコマンドを用いてRailsアプリケーションを作成するが、今回はリポジトリからクローンするため、dockerディレクトリ下にrailsディレクトリをあらかじめ作成しておく。
-```ssh
-mkdir rails
-```
+本来であれば、railsコマンドを用いてRailsアプリケーションを作成するが、今回はリポジトリからクローンするため、省略。
+
 
 <br>
 
@@ -83,6 +84,7 @@ mkdir rails
 
 [GitHub Repogitory](https://github.com/ne221248/Rails-application/) `https://github.com/ne221248/Rails-application/`
 
+コンテナからログアウトした状態で実行
 ```sh
 cd rails
 git clone git@github.com:ne221248/Rails-application.git
