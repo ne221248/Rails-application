@@ -1,24 +1,39 @@
-# README
+# Welcome to PC-shop Web Application 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 技術スタック一覧
+- [Docker](https://www.docker.com/ja-jp/) 仮想コンテナ
+- [Ruby on Rails](https://rubyonrails.org/)　Webアプリケーションフレームワーク
+- [参考書]()
 
-Things you may want to cover:
+# 事前準備
+makefileを使用して環境構築する練習を兼ねて後日記述する
 
-* Ruby version
+# 開発環境
 
-* System dependencies
+### Step1 以下のリポジトリーからソースコードを取得
 
-* Configuration
+[GitHub Repogitory](https://github.com/ne221248/Rails-application/) `https://github.com/ne221248/Rails-application/`
 
-* Database creation
+```sh
+git clone git@github.com:ne221248/Rails-application.git
+cd Rails-application
+```
 
-* Database initialization
+もしくは、以下のコマンドを実行してください。
 
-* How to run the test suite
+```sh
+gh repo clone ne221248/Rails-application
+cd Rails-application
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Step2 ローカル開発環境をセットアップ(Docker使用)
 
-* Deployment instructions
+```sh
+make setup
+```
 
-* ...
+### Step3
+
+
+# How to use this application
+
