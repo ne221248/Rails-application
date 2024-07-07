@@ -120,7 +120,13 @@ make setup
 ```sh
 make run
 ```
-アプリケーションを停止するには、バックグラウンド実行したため、`fg`コマンドでフォアグラウンドに移行し、Ctrl+Cキーを押す。
+>`http://localhost:3000`にアクセスして確認してください。
+
+<img src="./readme/index_page.png" alt="run application" style="width: 60%;"/>
+
+
+
+>アプリケーションを停止するには、バックグラウンド実行したため、`fg`コマンドでフォアグラウンドに移行し、Ctrl+Cキーを押す。
 
 <br>
 
