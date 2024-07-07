@@ -77,6 +77,7 @@ Rails 7.0.4のように7系のRailsがインストールされていることを
 
 本来であれば、railsコマンドを用いてRailsアプリケーションを作成するが、今回はリポジトリからクローンするため、省略。
 
+　この後の作業のために、`exit`、ログアウトしておく。
 
 <br>
 
@@ -88,7 +89,6 @@ Rails 7.0.4のように7系のRailsがインストールされていることを
 ```sh
 cd rails
 git clone git@github.com:ne221248/Rails-application.git
-cd Rails-application
 ```
 
 もしくは、以下のコマンドを実行してください。
@@ -96,11 +96,11 @@ cd Rails-application
 ```sh
 cd rails
 gh repo clone ne221248/Rails-application
-cd Rails-application
 ```
 <br>
 
 ### Step5 ローカル開発環境をセットアップ
+docker ディレクトリで実行
 
 ```sh
 make setup
