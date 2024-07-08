@@ -196,3 +196,7 @@ make run
 >名前付き空間operatorで実装
 
 <img src="./readme/operator.png" alt="operator" style="width: 80%;"/>
+
+# ER図
+
+<img src="./readme/erd.png" alt="operator" style="width: 80%;"/>
