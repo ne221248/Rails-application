@@ -33,8 +33,8 @@ class OrdersController < ApplicationController
                 amount: sum_prices(prices),
                 status: "予約済み"
             )
-        p "デバック用"
-        p @order
+        #p "デバック用"
+        #p @order
         session[:order] = @order
 
     end

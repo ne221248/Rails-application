@@ -2,6 +2,7 @@
 
 login:
 	docker exec -it rails24 bash
+	cd Rails-application
 
 setup:
 	bundle install
