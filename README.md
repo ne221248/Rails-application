@@ -185,7 +185,7 @@ make run
 詳細は省きます。在庫の管理や構成の変更やユーザの管理や予約の削除をすることができます。
 >名前付き空間Adminで実装
 
-<img src="./readme/admin" alt="admin" style="width: 80%;"/>
+<img src="./readme/admin.png" alt="admin" style="width: 80%;"/>
 
 <br>
 
@@ -195,4 +195,4 @@ make run
 オペレータは発送業者などを想定しています。予約ステータスの変更のみできます。
 >名前付き空間operatorで実装
 
-<img src="./readme/operator" alt="operator" style="width: 80%;"/>
+<img src="./readme/operator.png" alt="operator" style="width: 80%;"/>
