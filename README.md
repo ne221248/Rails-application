@@ -120,6 +120,7 @@ make setup
 ```sh
 make run
 ```
+
 >`http://localhost:3000`にアクセスして確認してください。
 
 <img src="./readme/index_page.png" alt="run application" style="width: 60%;"/>
@@ -132,3 +133,49 @@ make run
 
 # How to use this application
 
+## 動作例
+
+### サイトへアクセス
+[http://localhost:3000](http://localhost:3000)　にアクセスすると、購入できるプランの一覧が表示されます。ログイン関連は際はサイドバーからできます。
+<img src="./readme/index_page.png" alt="root:" style="width: 80%;"/>
+
+### プラン詳細を確認
+プラン名をクリックすると、詳細を見ることができます。
+<img src="./readme/plan_show.png" alt="plan/show" style="width: 80%;"/>
+
+### カートへ追加
+カートに追加しようとすると、ログインを求められます。
+
+ログイン後、カートに追加できるようになります。
+
+<img src="./readme/login.png" alt="before_action" style="width: 80%;"/>
+<img src="./readme/cart_new.png" alt="cart/new" style="width: 80%;"/>
+<img src="./readme/cart_show.png" alt="cart/show" style="width: 80%;"/>
+
+>カートとUserは1対1の関係にあるので、またログインしても情報は記憶されていますし、一人に対して複数のカートが生成されることを防いでいます。
+
+### 構成の変更
+カートの内容を確認すると、編集or削除できるリンクが表示されている。
+
+編集をクリックして好きな構成に変更する。
+<img src="./readme/cart_edit.png" alt="cart/edit" style="width: 80%;"/>
+<img src="./readme/cart_edit_ok.png" alt="cart/show_2" style="width: 80%;"/>
+
+>planモデルにPC構成情報があり、partモデルにパーツ情報があるが、それらをつなぐ中間テーブルplan_partモデルを作成し、planモデルとpartモデルを多対多の関連付けをしているため、複数のプランで同じパーツを使えるようにしている。
+>また、中間テーブルのおかげでplanの変更が用意である。
+>>しかしそれだと、他のユーザにも反映される全てのプランについてパーツを変えてしまうため、新たな中間モデルconfigurationを作成してこの処理を可能にしている。
+
+### 予約の確定
+
+
+### その他
+- 右上のユーザ名をクリックすることでログインしているユーザの情報やパスワードを変更できます。
+- 予約はステータスが"~~~~"であれば削除できます。
+- 在庫がなくなったパーツを含む構成はカートに追加できません。　何かの不具合でカートに追加できてしまっても、予約を確定する際にエラー処理を挟み、そのカートを破棄します。
+
+## 管理者Page
+[http://localhost:3000/admin_login](http://localhost:3000/admin_login) 「管理者」という名前でログインできます。パスワードは「game」です。
+
+
+## オペレータPage
+[http://localhost:3000/operator_login](http://localhost:3000/operator_login) 「オペ」という名前でログインできます。パスワードは「game」です。
