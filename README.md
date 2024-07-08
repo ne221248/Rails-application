@@ -162,20 +162,37 @@ make run
 <img src="./readme/cart_edit_ok.png" alt="cart/show_2" style="width: 80%;"/>
 
 >planモデルにPC構成情報があり、partモデルにパーツ情報があるが、それらをつなぐ中間テーブルplan_partモデルを作成し、planモデルとpartモデルを多対多の関連付けをしているため、複数のプランで同じパーツを使えるようにしている。
->また、中間テーブルのおかげでplanの変更が用意である。
+>また、中間テーブルのおかげでplanの変更が容易である。
 >>しかしそれだと、他のユーザにも反映される全てのプランについてパーツを変えてしまうため、新たな中間モデルconfigurationを作成してこの処理を可能にしている。
 
 ### 予約の確定
+カートの詳細から予約を確定することができる。一度下のような画面に遷移する。
+<img src="./readme/orders_new" alt="orders/new" style="width: 80%;"/>
 
+予約を確定したら、注文状況から詳細を確認することができる。
+<img src="./readme/orders_index" alt="orders/index" style="width: 80%;"/>
 
 ### その他
 - 右上のユーザ名をクリックすることでログインしているユーザの情報やパスワードを変更できます。
-- 予約はステータスが"~~~~"であれば削除できます。
+- 予約はステータスが"予約済み"であれば削除できます。それ以外の時はユーザ側から削除できません。
 - 在庫がなくなったパーツを含む構成はカートに追加できません。　何かの不具合でカートに追加できてしまっても、予約を確定する際にエラー処理を挟み、そのカートを破棄します。
+
+<br>
 
 ## 管理者Page
 [http://localhost:3000/admin_login](http://localhost:3000/admin_login) 「管理者」という名前でログインできます。パスワードは「game」です。
 
+詳細は省きます。在庫の管理や構成の変更やユーザの管理や予約の削除をすることができます。
+>名前付き空間Adminで実装
+
+<img src="./readme/admin" alt="admin" style="width: 80%;"/>
+
+<br>
 
 ## オペレータPage
 [http://localhost:3000/operator_login](http://localhost:3000/operator_login) 「オペ」という名前でログインできます。パスワードは「game」です。
+
+オペレータは発送業者などを想定しています。予約ステータスの変更のみできます。
+>名前付き空間operatorで実装
+
+<img src="./readme/operator" alt="operator" style="width: 80%;"/>
