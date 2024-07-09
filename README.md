@@ -137,6 +137,7 @@ make run
 
 ### サイトへアクセス
 [http://localhost:3000](http://localhost:3000)　にアクセスすると、購入できるプランの一覧が表示されます。ログイン関連は際はサイドバーからできます。
+
 <img src="./readme/index_page.png" alt="root:" style="width: 80%;"/>
 
 ### プラン詳細を確認
@@ -167,10 +168,10 @@ make run
 
 ### 予約の確定
 カートの詳細から予約を確定することができる。一度下のような画面に遷移する。
-<img src="./readme/orders_new" alt="orders/new" style="width: 80%;"/>
+<img src="./readme/orders_new.png" alt="orders/new" style="width: 80%;"/>
 
 予約を確定したら、注文状況から詳細を確認することができる。
-<img src="./readme/orders_index" alt="orders/index" style="width: 80%;"/>
+<img src="./readme/orders_index.png" alt="orders/index" style="width: 80%;"/>
 
 ### その他
 - 右上のユーザ名をクリックすることでログインしているユーザの情報やパスワードを変更できます。
